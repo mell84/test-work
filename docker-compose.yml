@@ -4,7 +4,7 @@ nginx:
  ports:
   - 9000:9000
  volumes:
-  - /root/test-work/logs/:/etc/nginx/logs/
+  - ./logs/:/etc/nginx/logs/
  links:
   - script:python_host
  environment:
@@ -14,7 +14,7 @@ nginx:
 postgres:
  image: postgres:latest
  ports:
-  - 5432:5432 # Проброс портов для внешнего доступа 
+  - 5432:5432
  volumes:
   - ./database/postgres:/data/postgres
  environment:
@@ -22,7 +22,7 @@ postgres:
   POSTGRES_USER: postgres
   PGDATA : /data/postgres
 script:
- dockerfile: ./Dockerfile # путь до докер файла указываем относительно директории в build
+ dockerfile: ./Dockerfile
  build: ./script
 # ports:
 #  - 9002:9002

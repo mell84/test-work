@@ -12,12 +12,6 @@ def hello():
     return " Йоууу Мазафакер!!! Ты создал базу данных\n"
 
 
-#@app.route("/x11vnc")
-#def hello():
-#    subprocess.call(['/etc/init.d/x11vnc'], shell=True, stdout=subprocess.PIPE)
-#    return "X11vnc has been started. Site was wroute in the @flask@ \n"
-
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=9002)
 
