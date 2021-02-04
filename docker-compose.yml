@@ -1,0 +1,31 @@
+nginx:
+ dockerfile: ./Dockerfile # путь до докер файла указываем относительно директории в build
+ build: ./nginx
+ ports:
+  - 9000:9000
+ volumes:
+  - /root/test-work/logs/:/etc/nginx/logs/
+ links:
+  - script:python_host
+ environment:
+  - NGINX_HOST=localhost
+  - NGINX_PORT=9000
+ command: nginx -g "daemon off;" # Можно было указать в докер-фале, но можно и здесь)
+postgres:
+ image: postgres:latest
+ ports:
+  - 5432:5432 # Проброс портов для внешнего доступа 
+ volumes:
+  - ./database/postgres:/data/postgres
+ environment:
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_USER: postgres
+  PGDATA : /data/postgres
+script:
+ dockerfile: ./Dockerfile # путь до докер файла указываем относительно директории в build
+ build: ./script
+# ports:
+#  - 9002:9002
+ links:
+  - postgres:database
+
